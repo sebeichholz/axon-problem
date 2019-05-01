@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+</head>
+<body>
+
+home.html
+<br/><br/>
+
+<span sec:authorize="!isAuthenticated()">
+go to <a href="user">user page</a> and login with "user" and "password"
+</span>
+
+<span sec:authorize="isAuthenticated()">
+    you are logged in, go to <a href="user">user page</a>
+</span>
+
+
+<div th:replace="/footer :: footer"/>
+
+</body>
+
+</html>
