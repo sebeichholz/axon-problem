@@ -4,16 +4,58 @@
 </head>
 <body>
 
+<style type="text/css">
+    <!--
+.textarea {
+    width:100%;
+    font-family: 'Courier New';
+    font-size: 50%;
+    border: 1px solid grey;
+    margin: 1px;
+    white-space: pre-wrap;       /* css-3 */
+}
+    -->
+</style>
 
 <div class="container">
 
     <div class="starter-template">
-        <h1>User page (Spring Security protected)</h1>
+        <h3>User page (Spring Security protected)</h3>
 
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
+
+    </div>
+
+    <br/>
+
+    <div>
+
+        <form method="POST">
+            <input type="hidden" name="action" value="create"/>
+            <input type="submit" value="send new command"/>
+        </form>
+
+        <hr/>
+        events: <span th:text="${events.size()}"></span>
+
+        <!--
+        <div th:each="event : ${events}" class="ui attached segment">
+            <div class="ui attached segment" th:text="${event.key}"/>
+            <div class="ui attached segment" th:text="${event.value.get('Identifier')}"/>
+            <div class="ui attached segment" th:text="${event.value}"/>
+
+        </div>
+        -->
+
+        <div th:each="event : ${events}">
+            <div class="textarea" th:text="${event}"/></div>
+            <br/>
+        </div>
+
+        <div class="textarea" th:text="${payload}"/>
 
     </div>
 
