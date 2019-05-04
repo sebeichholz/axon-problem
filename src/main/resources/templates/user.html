@@ -22,8 +22,8 @@
     <div class="starter-template">
         <h3>User page (Spring Security protected)</h3>
 
-        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
-        <form th:action="@{/logout}" method="post">
+<!--        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>-->
+        <form th:action="@{/logout}" method="get">
             <input type="submit" value="Sign Out"/>
         </form>
 

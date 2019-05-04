@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.axonframework.eventhandling.DomainEventMessage;
 import org.axonframework.eventsourcing.eventstore.DomainEventStream;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -22,6 +23,8 @@ public class EventHelper {
         Map<String, Map<String, Object>> result = new TreeMap<>(Collections.reverseOrder());
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+
 
         DomainEventStream domainEventStream = eventStore.readEvents(aggregateId);
         Iterator<? extends DomainEventMessage<?>> iterator = domainEventStream.asStream().iterator();
